@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Change Share</title>
+  <!-- jQuery library -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
+
+  <!-- Popper JS -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> -->
+
+  <!-- Latest compiled JavaScript -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+</head>
+  <body class="bg-dark">
+    <div class="container">
+      <div class="card bg-dark text-light shadow-lg">
+        <div class="card-header bg-warning text-dark">Change Folder Permissions</div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="dir">Folder:</label>
+              <br>
+              <div class="btn-group">
+                <input type="file" id="dir" class="btn btn-primary btn-fill" webkitdirectory="" directory="" />
+                <button id="GetCurrentPermissions" class="btn btn-info" onclick="GetCurPer()" type=button>Current Permissions</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="usr">User:</label>
+              <select class="form-control" id="usr">
+                <option>John, Frank</option>
+                <option>Bill, Nougot</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Set Permissions:</label>
+              <br>
+              <label class="radio-inline">
+                <input type="radio" name="optradio"> Read
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio"> Modify
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio"> Remove
+              </label>
+            </div>
+        </div>
+        <button type="apply" class="btn btn-primary">Apply</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
