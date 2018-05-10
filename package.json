@@ -1,19 +1,29 @@
 {
   "name": "colorpencil",
   "productName": "colorpencil",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "version": "0.1.0",
+  "description": "a simple tool for end users to manage permissions",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "dist": "electron-builder"
   },
-  "keywords": [],
-  "author": "Joosh",
-  "license": "MIT",
+
+  "build": {
+    "appId": "colorpencil",
+    "asar": false,
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    }
+  },
+
   "config": {
     "forge": {
       "packagerConfig": {},
@@ -50,14 +60,21 @@
       ]
     }
   },
+
+  "keywords": [],
+  "author": "jooshkins",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
     "powershell": "^2.3.0"
   },
   "devDependencies": {
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.1",
     "electron": "2.0.0",
+    "electron-builder": "^20.11.1",
     "electron-forge": "^5.2.0"
   }
 }

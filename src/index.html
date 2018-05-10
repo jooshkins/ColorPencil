@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
   <title>Change Share</title>
-  <!-- jQuery library -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
+  <meta charset="UTF-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'"> -->
 
-  <!-- Popper JS -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> -->
+  <!-- unsafe remove after testing -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'">
 
-  <!-- Latest compiled JavaScript -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+  <script>window.jQuery = window.$ = require('jquery');</script>
+  <!-- <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script> -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="renderer.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
 </head>
-  <body class="bg-dark">
-    <div class="container">
-      <div class="card bg-dark text-light shadow-lg">
-        <div class="card-header bg-warning text-dark">Change Folder Permissions</div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <label for="dir">Folder:</label>
-              <br>
-              <div class="btn-group">
-                <input type="file" id="dir" class="btn btn-primary btn-fill" webkitdirectory="" directory="" />
-                <button id="GetCurrentPermissions" class="btn btn-info" onclick="GetCurPer()" type=button>Current Permissions</button>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="usr">User:</label>
-              <select class="form-control" id="usr">
-                <option>John, Frank</option>
-                <option>Bill, Nougot</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Set Permissions:</label>
-              <br>
-              <label class="radio-inline">
-                <input type="radio" name="optradio"> Read
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="optradio"> Modify
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="optradio"> Remove
-              </label>
-            </div>
+
+<body class="bg-dark">
+  <!-- The Modal -->
+  <div class="modal fade" id="CurPer">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content text-dark">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">User Permissions</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <button type="apply" class="btn btn-primary">Apply</button>
-        </form>
+        <!-- Modal body -->
+        <div id="Per" class="modal-body">
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+  <div class="container">
+    <div class="card bg-dark text-light shadow-lg">
+      <div class="card-header bg-warning text-dark">Change Folder Permissions</div>
+      <div class="card-body">
+        <!-- <form> -->
+          <div class="form-group">
+            <label for="dir">Folder:</label>
+            <br>
+            <div class="btn-group">
+              <input type="file" id="dir" class="btn btn-primary btn-fill" webkitdirectory="" directory="" />
+              <button id="GetDirPer" class="btn btn-info" type=button>Current Permissions</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="usr">User:</label>
+            <select id="usrBin" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label>Set Permissions:</label>
+            <br>
+            <label class="radio-inline">
+              <input id="read" type="radio" name="optradio"> Read
+            </label>
+            <label class="radio-inline">
+              <input id="modify" type="radio" name="optradio"> Modify
+            </label>
+            <label class="radio-inline">
+              <input id="remove" type="radio" name="optradio"> Remove
+            </label>
+          </div>
+      </div>
+      <button id="SetPer" class="btn btn-primary">Apply</button>
+    </div>
+  </div>
+</body>
+
 </html>
