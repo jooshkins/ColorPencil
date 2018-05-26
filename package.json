@@ -1,80 +1,45 @@
 {
-  "name": "colorpencil",
-  "productName": "colorpencil",
+  "name": "colorpencil-react",
   "version": "0.1.0",
-  "description": "a simple tool for end users to manage permissions",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "dist": "electron-builder"
+  "author": "jooshkins",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "electron-react-titlebar": "^0.8.1",
+    "powershell": "^2.3.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "reactstrap": "^6.0.1"
   },
-
+  "homepage": "./",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps"
+  },
   "build": {
-    "appId": "colorpencil",
+    "appId": "ColorPencil",
+    "extends": "react-cra",
     "asar": false,
     "win": {
       "target": [
         "portable",
         "nsis"
       ]
+    },
+    "directories": {
+      "buildResources": "test"
     }
-  },
-
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "platforms": [
-            "win32"
-          ],
-          "config": {
-            "name": "colorpencil"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "platforms": [
-            "linux"
-          ],
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "platforms": [
-            "linux"
-          ],
-          "config": {}
-        }
-      ]
-    }
-  },
-
-  "keywords": [],
-  "author": "jooshkins",
-  "license": "MIT",
-  "dependencies": {
-    "bootstrap": "^4.1.1",
-    "electron-squirrel-startup": "^1.0.0",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.3",
-    "powershell": "^2.3.0"
   },
   "devDependencies": {
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.1",
-    "electron": "2.0.0",
-    "electron-builder": "^20.11.1",
-    "electron-forge": "^5.2.0"
+    "electron": "^2.0.0",
+    "electron-builder": "^20.13.3",
+    "react-scripts": "1.1.4"
   }
 }

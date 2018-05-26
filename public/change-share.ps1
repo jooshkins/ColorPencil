@@ -9,8 +9,8 @@ param (
 function Get-UsersList ($full) {
     #test for not being in domain or handle the error
 
-    if ((gwmi win32_computersystem).partofdomain) {
-        $domain = ((gwmi Win32_ComputerSystem).Domain).Split(".")[0] # short domain name 
+    if ((Get-WmiObject win32_computersystem).partofdomain) {
+        $domain = ((Get-WmiObject Win32_ComputerSystem).Domain).Split(".")[0] # short domain name 
         $UsrList = @{} 
     
         $users = ([adsisearcher]"objectcategory=user")
@@ -37,25 +37,26 @@ function Get-DirPermissions ($dir) {
     $usrs | ConvertTo-Html -Property FileSystemRights, AccessControlType, IdentityReference -Fragment
 }
 function Set-DirPermissions ($dir, $usr, $per) {
+    Write-Output "dir Parameter: $dir"
     Write-Output "usr Parameter: $usr"
+    Write-Output "per Parameter: $per"
 
-    $UsrList = Get-UsersList -full true | ConvertFrom-Json
-    $usrFound = $UsrList.GetEnumerator() | Where-Object {$_.Value -eq $usr}
-    $usrFound = $usrFound.Key
+    # $UsrList = Get-UsersList -full true | ConvertFrom-Json
+    # $usrFound = $UsrList.GetEnumerator() | Where-Object {$_.Value -eq $usr}
+    # $usrFound = $usrFound.Key
+    $usrFound = $usr
 
-    Write-Output "usr: $usrFound"
+    Write-Output "usr Found: $usrFound"
 
     $acl = Get-Acl $dir
 
-    if ($per -eq 'r') {
-        $per = 'Read'
+    if ($per -eq 'read') {
         $new = 'true'
     }
-    if ($per -eq 'm') {
-        $per = 'Modify'
+    if ($per -eq 'modify') {
         $new = 'true'
     }
-    if ($per -eq 'x') {
+    if ($per -eq 'remove') {
         $acl.Access | Where-Object {
             $_.IdentityReference.Value -match $usrFound
         } | ForEach-Object {
