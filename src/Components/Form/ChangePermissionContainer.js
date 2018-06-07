@@ -8,7 +8,6 @@ const powershell = electron.remote.require('powershell');
 const basePath = electron.remote.app.getAppPath();
 const scriptPath = basePath + '\\build\\change-share.ps1'
 
-console.log('scriptpath = ' + scriptPath);
 
 // ChangeFolderContainer -- gets all user inputs
 class ChangePermissionContainer extends React.Component {
